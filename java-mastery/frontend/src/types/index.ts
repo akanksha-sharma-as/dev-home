@@ -32,9 +32,15 @@ export type PracticeProblem = {
 export type Topic = {
   title: string;
   content: string;
+  whyItMatters?: string;
+  mentalModel?: string;
   template?: string;
   code: string;
   keyPoints: string[];
+  commonMistakes?: string[];
+  tradeoffs?: string[];
+  interviewQuestions?: string[];
+  summaryChecklist?: string[];
   traceSteps: TraceStep[];
   practiceProblems?: PracticeProblem[];
 };
