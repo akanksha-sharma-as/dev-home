@@ -56,7 +56,7 @@ export type Question = {
 };
 
 export type LearningSet = {
-  id: number;
+  id: string | number;
   title: string;
   subtitle: string;
   icon: string;
@@ -79,9 +79,10 @@ export type RandomQuizEntry = {
 };
 
 export type UserProgress = {
-  completedSets: number[];
-  setScores: Record<number, number>;
-  topicsSeen: Record<number, number[]>;
+  completedSets: string[];
+  setScores: Record<string, number>;
+  topicsSeen: Record<string, number[]>;
+  completedTopics: Record<string, number[]>;
   totalQuizzesTaken: number;
   lastActivity: string;
   randomQuizHistory: RandomQuizEntry[];

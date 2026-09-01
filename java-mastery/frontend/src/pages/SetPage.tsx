@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Bookmark, Check, ChevronLeft, ChevronRight, Code, Dumbbell } from 'lucide-react';
 import ComplexityTable from '../components/ComplexityTable';
@@ -735,10 +735,11 @@ export const learningSets: LearningSet[] = [
 
 export default function SetPage() {
   const { id } = useParams();
-  const { progress, markSetComplete, markTopicSeen } = useProgressStore();
+  const { progress, markSetComplete, markTopicComplete } = useProgressStore();
   const [activeTopicIdx, setActiveTopicIdx] = useState(0);
 
   const routeId = String(id ?? '');
+  const routeMeta = allSets.find((set) => set.id.toLowerCase() === routeId.toLowerCase());
   const baseSet = (() => {
     if (routeId.startsWith('java-')) return learningSets[0];
     if (routeId.startsWith('springboot-')) return learningSets[3];
@@ -746,23 +747,32 @@ export default function SetPage() {
     return learningSets.find((item) => String(item.id) === routeId) ?? learningSets[0];
   })();
 
-  const routeMeta = allSets.find((set) => set.id.toLowerCase() === routeId.toLowerCase());
+  if (!routeMeta) {
+    return (
+      <div className="mx-auto max-w-3xl px-3 py-10 text-center sm:px-6">
+        <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8">
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Set not found</h1>
+          <p className="mt-2 text-[var(--text-secondary)]">That learning set does not exist or may have moved.</p>
+          <Link to="/" className="mt-5 inline-flex rounded-full bg-cyan-500 px-4 py-2 text-sm font-medium text-slate-950">Back to home</Link>
+        </div>
+      </div>
+    );
+  }
+
   const set = {
     ...baseSet,
-    id: baseSet.id,
-    title: routeMeta?.title ?? baseSet.title,
-    subtitle: routeMeta?.title ? `${routeMeta.title} covers the core patterns you need to reason through real interview and system-design questions.` : baseSet.subtitle,
+    id: routeMeta.id,
+    title: routeMeta.title,
+    subtitle: `${routeMeta.title} covers the core patterns you need to reason through real interview and system-design questions.`,
   } as LearningSet;
 
   const activeTopic = set.topics[activeTopicIdx] ?? set.topics[0];
-
-  useEffect(() => {
-    markTopicSeen(set.id, activeTopicIdx);
-  }, [activeTopicIdx, markTopicSeen, set.id]);
+  const completedTopics = progress.completedTopics[routeId] ?? [];
 
   const canGoPrev = activeTopicIdx > 0;
   const canGoNext = activeTopicIdx < set.topics.length - 1;
-  const isCompleted = progress.completedSets.includes(set.id);
+  const isCompleted = progress.completedSets.includes(routeId);
+  const isTopicComplete = completedTopics.includes(activeTopicIdx);
 
   return (
     <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-6">
@@ -777,7 +787,7 @@ export default function SetPage() {
 
         <button
           type="button"
-          onClick={() => markSetComplete(set.id, 100)}
+          onClick={() => markSetComplete(routeId)}
           className="inline-flex items-center gap-2 rounded-full border border-cyan-500/50 bg-cyan-500/10 px-3 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20 sm:px-4"
         >
           <Check className="h-4 w-4" />
@@ -844,6 +854,14 @@ export default function SetPage() {
                   {activeTopicIdx + 1}/{set.topics.length}
                 </span>
               </div>
+
+              <button
+                type="button"
+                onClick={() => markTopicComplete(routeId, activeTopicIdx)}
+                className="mb-5 rounded-full border border-cyan-500/50 bg-cyan-500/10 px-3 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20"
+              >
+                {isTopicComplete ? 'Topic completed' : 'Mark topic complete'}
+              </button>
 
               <p className="mb-5 text-[var(--text-secondary)]">{activeTopic.content}</p>
 

@@ -4,8 +4,8 @@ import { UserProgress } from '../types';
 
 interface ProgressStore {
   progress: UserProgress;
-  markSetComplete: (setId: number, score: number) => void;
-  markTopicSeen: (setId: number, topicIndex: number) => void;
+  markSetComplete: (setId: string, score?: number) => void;
+  markTopicComplete: (setId: string, topicIndex: number) => void;
   addRandomQuizResult: (topic: string, score: number, total: number) => void;
   resetProgress: () => void;
 }
@@ -14,6 +14,7 @@ const defaultProgress: UserProgress = {
   completedSets: [],
   setScores: {},
   topicsSeen: {},
+  completedTopics: {},
   totalQuizzesTaken: 0,
   lastActivity: new Date().toISOString(),
   randomQuizHistory: [],
@@ -23,7 +24,7 @@ export const useProgressStore = create<ProgressStore>()(
   persist(
     (set) => ({
       progress: defaultProgress,
-      markSetComplete: (setId, score) =>
+      markSetComplete: (setId, score = 100) =>
         set((state) => ({
           progress: {
             ...state.progress,
@@ -34,21 +35,21 @@ export const useProgressStore = create<ProgressStore>()(
               ...state.progress.setScores,
               [setId]: Math.max(state.progress.setScores[setId] ?? 0, score),
             },
-            totalQuizzesTaken: state.progress.totalQuizzesTaken + 1,
             lastActivity: new Date().toISOString(),
           },
         })),
-      markTopicSeen: (setId, topicIndex) =>
+      markTopicComplete: (setId, topicIndex) =>
         set((state) => {
-          const existing = state.progress.topicsSeen[setId] ?? [];
+          const existing = state.progress.completedTopics?.[setId] ?? [];
           if (existing.includes(topicIndex)) return state;
           return {
             progress: {
               ...state.progress,
-              topicsSeen: {
-                ...state.progress.topicsSeen,
+              completedTopics: {
+                ...(state.progress.completedTopics ?? {}),
                 [setId]: [...existing, topicIndex],
               },
+              lastActivity: new Date().toISOString(),
             },
           };
         }),

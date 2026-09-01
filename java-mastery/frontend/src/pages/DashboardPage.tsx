@@ -94,8 +94,7 @@ export default function DashboardPage() {
             .map((curriculum) => {
               const programSets = allSets.filter((set) => set.topic === curriculum);
               const completed = programSets.filter((set) => {
-                const setId = Number(set.id.split('-').slice(-1)[0] ?? '0');
-                return progress.completedSets.includes(setId);
+                return progress.completedSets.includes(set.id);
               }).length;
               const percentage = programSets.length ? Math.round((completed / programSets.length) * 100) : 0;
 
