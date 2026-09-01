@@ -765,11 +765,11 @@ export default function SetPage() {
   const isCompleted = progress.completedSets.includes(set.id);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-      <div className="mb-6 flex items-center justify-between gap-4">
+    <div className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-6">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3 sm:mb-6 sm:gap-4">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-2 text-sm text-[var(--text-primary)] transition hover:border-cyan-500/60 hover:text-cyan-200"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm text-[var(--text-primary)] transition hover:border-cyan-500/60 hover:text-cyan-200 sm:px-3.5"
         >
           <ChevronLeft className="h-4 w-4" />
           Back to home
@@ -778,14 +778,14 @@ export default function SetPage() {
         <button
           type="button"
           onClick={() => markSetComplete(set.id, 100)}
-          className="inline-flex items-center gap-2 rounded-full border border-cyan-500/50 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20"
+          className="inline-flex items-center gap-2 rounded-full border border-cyan-500/50 bg-cyan-500/10 px-3 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20 sm:px-4"
         >
           <Check className="h-4 w-4" />
           {isCompleted ? 'Completed' : 'Mark complete'}
         </button>
       </div>
 
-      <div className="rounded-[28px] border border-[var(--border)] bg-[var(--card-bg)] p-4 shadow-[0_22px_70px_rgba(15,23,42,0.18)] sm:p-6">
+      <div className="rounded-3xl border border-[var(--border)] bg-[var(--card-bg)] p-3 shadow-[0_22px_70px_rgba(15,23,42,0.18)] sm:rounded-[28px] sm:p-6">
         <div className="mb-6 grid gap-4 xl:grid-cols-[250px_minmax(0,1fr)]">
           <aside className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-3">
             <div className="mb-4 flex items-center justify-between px-2 pt-1">
@@ -814,16 +814,16 @@ export default function SetPage() {
             </div>
           </aside>
 
-          <main className="space-y-6">
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-5">
+          <main className="min-w-0 space-y-6">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4 sm:p-5">
               <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex items-center gap-4">
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-r ${set.bgGradient} text-2xl shadow-lg shadow-cyan-500/10`}>
+                <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                  <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r ${set.bgGradient} text-xl shadow-lg shadow-cyan-500/10 sm:h-14 sm:w-14 sm:text-2xl`}>
                     {set.icon}
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--text-muted)]">Set {set.id}</p>
-                    <h1 className="mt-1 text-3xl font-bold text-[var(--text-primary)]">{set.title}</h1>
+                    <h1 className="mt-1 break-words text-2xl font-bold text-[var(--text-primary)] sm:text-3xl">{set.title}</h1>
                   </div>
                 </div>
 
@@ -835,7 +835,7 @@ export default function SetPage() {
 
               <p className="mb-6 text-base leading-7 text-[var(--text-secondary)]">{set.subtitle}</p>
 
-              <div className="mb-5 flex items-center justify-between">
+              <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.26em] text-[var(--text-muted)]">Current topic</p>
                   <h2 className="mt-2 text-2xl font-semibold text-cyan-300">{activeTopic.title}</h2>

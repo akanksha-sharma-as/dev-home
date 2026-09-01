@@ -39,15 +39,15 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10">
-      <div className="mb-8 flex items-center justify-between gap-4">
+    <div className="mx-auto max-w-6xl px-3 py-6 sm:px-6 sm:py-10">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3 sm:mb-8 sm:gap-4">
         <div>
           <p className="text-sm uppercase tracking-[0.2em] text-[var(--text-muted)]">Overview</p>
-          <h2 className="mt-2 text-3xl font-bold text-cyan-300">Dashboard</h2>
+          <h2 className="mt-2 text-2xl font-bold text-cyan-300 sm:text-3xl">Dashboard</h2>
         </div>
         <Link
           to="/"
-          className="rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 transition hover:border-cyan-400"
+          className="rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-2 text-sm font-medium text-cyan-300 transition hover:border-cyan-400 sm:px-4"
         >
           Back to home
         </Link>

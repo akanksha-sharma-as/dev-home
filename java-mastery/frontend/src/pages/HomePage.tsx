@@ -52,16 +52,16 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-      <div className="mb-6 overflow-hidden rounded-[28px] border border-[var(--border)] bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_26%),linear-gradient(135deg,var(--card-bg),var(--panel))] p-6 shadow-[0_24px_80px_rgba(15,23,42,0.12)]">
+    <div className="mx-auto max-w-6xl px-3 py-4 sm:px-6 sm:py-6">
+      <div className="mb-5 overflow-hidden rounded-3xl border border-[var(--border)] bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_26%),linear-gradient(135deg,var(--card-bg),var(--panel))] p-4 shadow-[0_24px_80px_rgba(15,23,42,0.12)] sm:mb-6 sm:rounded-[28px] sm:p-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.35em] text-cyan-300/90">Java mastery</p>
-            <h1 className="text-4xl font-black tracking-tight text-[var(--text-primary)] md:text-5xl">Learn faster. Build smarter.</h1>
+            <h1 className="text-3xl font-black tracking-tight text-[var(--text-primary)] sm:text-4xl md:text-5xl">Learn faster. Build smarter.</h1>
             <p className="mt-4 max-w-xl text-base text-[var(--text-secondary)] md:text-lg">{TRACK_DESCRIPTIONS[activeTrack]}</p>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-lg shadow-[rgba(15,23,42,0.08)]">
+          <div className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3 shadow-lg shadow-[rgba(15,23,42,0.08)] sm:gap-4 sm:p-4">
             <div className={`h-12 w-12 rounded-2xl bg-gradient-to-r ${trackData.highlight}`} />
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">Current track</p>

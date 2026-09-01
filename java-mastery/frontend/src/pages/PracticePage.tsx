@@ -48,7 +48,7 @@ export default function PracticePage() {
 
   if (!routeId) {
     return (
-      <div className="mx-auto max-w-5xl px-6 py-10">
+      <div className="mx-auto max-w-5xl px-3 py-6 sm:px-6 sm:py-10">
         <div className="rounded-2xl border border-slate-700 bg-slate-900/80 p-10 text-center">
           <p className="text-xl font-semibold text-slate-100">Set not found.</p>
           <Link to="/" className="mt-4 inline-flex rounded-xl bg-cyan-500 px-4 py-2 text-sm text-slate-950">
@@ -60,19 +60,19 @@ export default function PracticePage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-10">
-      <div className="mb-8 flex items-center justify-between gap-4">
+    <div className="mx-auto max-w-5xl px-3 py-6 sm:px-6 sm:py-10">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3 sm:mb-8 sm:gap-4">
         <div>
           <p className="text-sm uppercase tracking-[0.2em] text-slate-400">{track}</p>
-          <h2 className="mt-2 text-3xl font-bold text-cyan-300">{selectedSet.title} Practice</h2>
+          <h2 className="mt-2 text-2xl font-bold text-cyan-300 sm:text-3xl">{selectedSet.title} Practice</h2>
         </div>
         <Link to="/" className="rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300">
           Back to home
         </Link>
       </div>
 
-      <div className="mb-8 rounded-2xl border border-slate-700 bg-slate-900/80 p-6 text-slate-200">
-        <p className="text-lg leading-relaxed">
+      <div className="mb-8 rounded-2xl border border-slate-700 bg-slate-900/80 p-4 text-slate-200 sm:p-6">
+        <p className="text-base leading-relaxed sm:text-lg">
           Try to solve it mentally <span className="font-semibold text-cyan-300">(or on paper)</span> before revealing hints or the approach.
           The goal is to practice <span className="font-semibold text-cyan-300">recognizing patterns</span> and building the solution from scratch.
         </p>

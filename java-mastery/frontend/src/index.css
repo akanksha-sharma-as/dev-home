@@ -68,8 +68,26 @@ body {
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 button, input, select, textarea {
   font: inherit;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    overflow-wrap: anywhere;
+  }
+
+  pre {
+    max-width: 100%;
+  }
 }
 
 ::-webkit-scrollbar {

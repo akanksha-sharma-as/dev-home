@@ -21,15 +21,15 @@ export default function Navbar() {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--card-bg)]/90 px-4 py-3 backdrop-blur-xl sm:px-6">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
+    <nav className="sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--card-bg)]/90 px-3 py-2.5 backdrop-blur-xl sm:px-6 sm:py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 sm:gap-4">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-violet-500 text-sm font-bold text-white shadow-lg shadow-cyan-500/20">
             D
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xs uppercase tracking-[0.28em] text-cyan-300/80">Dev</p>
-            <p className="text-sm font-semibold text-[var(--text-primary)]">Dojo</p>
+            <p className="truncate text-sm font-semibold text-[var(--text-primary)]">Dojo</p>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] p-1">
+        <div className="flex shrink-0 items-center gap-0.5 rounded-full border border-[var(--border)] bg-[var(--surface)] p-1 sm:gap-2">
           {themeOptions.map(({ key, label, icon: Icon }) => {
             const active = key === theme;
 
