@@ -15,6 +15,8 @@ interface GeneratedQuestion {
   difficulty: Difficulty;
 }
 
+const apiBaseUrl = import.meta.env.VITE_API_URL ?? '';
+
 function mapToQuestion(q: GeneratedQuestion, id: number, diff: Difficulty): Question {
   const diffs: Question['difficulty'][] = ['easy', 'medium', 'hard'];
   const difficulty = (diff === 'mixed' ? diffs[id % 3] : diff) as Question['difficulty'];
@@ -53,7 +55,7 @@ export default function RandomQuizPage() {
     setError('');
 
     try {
-      const response = await fetch('/api/quiz/generate', {
+      const response = await fetch(`${apiBaseUrl}/api/quiz/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic, difficulty, count: 10 }),
