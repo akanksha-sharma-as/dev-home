@@ -1,0 +1,17 @@
+{
+  "name": "Dev Dojo",
+  "short_name": "Dev Dojo",
+  "description": "Learn Java, Spring Boot, and DSA for real-world engineering and interviews.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020817",
+  "theme_color": "#020817",
+  "icons": [
+    {
+      "src": "/dev-dojo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

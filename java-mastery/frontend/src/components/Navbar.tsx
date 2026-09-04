@@ -1,4 +1,4 @@
-import { MoonStar, Sparkles, SunMedium } from 'lucide-react';
+import { BookOpen, ChartNoAxesCombined, Home, MoonStar, PenLine, Sparkles, SunMedium } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useThemeStore, type Theme } from '../store/themeStore';
 
@@ -8,6 +8,13 @@ const links = [
   { to: '/practice?set=java-1&track=java', label: 'Practice' },
   { to: '/quiz?set=java-1&track=java', label: 'Quiz' },
   { to: '/set/java-1', label: 'Set' },
+];
+
+const mobileLinks = [
+  { to: '/', label: 'Home', icon: Home },
+  { to: '/dashboard', label: 'Progress', icon: ChartNoAxesCombined },
+  { to: '/practice?set=java-1&track=java', label: 'Practice', icon: PenLine },
+  { to: '/quiz?set=java-1&track=java', label: 'Quiz', icon: BookOpen },
 ];
 
 const themeOptions: { key: Theme; label: string; icon: typeof SunMedium }[] = [
@@ -72,6 +79,27 @@ export default function Navbar() {
             );
           })}
         </div>
+      </div>
+
+      <div className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-2xl border border-[var(--border)] bg-[var(--card-bg)]/95 p-1.5 shadow-[0_16px_40px_rgba(15,23,42,0.28)] backdrop-blur-xl md:hidden" style={{ paddingBottom: 'max(0.375rem, env(safe-area-inset-bottom))' }}>
+        {mobileLinks.map(({ to, label, icon: Icon }) => {
+          const targetPath = to.split('?')[0];
+          const isActive = location.pathname === targetPath;
+
+          return (
+            <Link
+              key={to}
+              to={to}
+              aria-label={label}
+              className={`flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-2 py-1 text-[10px] font-medium transition ${
+                isActive ? 'bg-cyan-500/15 text-cyan-200' : 'text-[var(--text-secondary)]'
+              }`}
+            >
+              <Icon className="h-4 w-4" />
+              <span>{label}</span>
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );

@@ -76,6 +76,12 @@ body {
   overflow-x: hidden;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 5.5rem;
+  }
+}
+
 button, input, select, textarea {
   font: inherit;
 }
